@@ -1,44 +1,36 @@
 const inquirer = require('inquirer');
-const { join } = require('path');
-const { writeFile } = require('fs/promises');
-const { createDocument } = require('./document');
+const {Circle} = require('./lib/shapes')
+const {Triangle} = require('./lib/shapes')
+const {Square} = require('./lib/shapes')
 
-var circle = document.getElementById("circle");
-var square = document.getElementById("square");
-var triangle = document.getElementById("triangle");
-
-const circle = require('./Assets/circle.svg');
-const square = require('./Assets/square.svg')
-const triangle = require('./Assets/triangle.svg')
-
-
+const fs = require('fs');
 
 
 const questions = [
     {
         type: "input",
-        name: "charachter",
-        message: "Input up to three characters.",
+        name: "character",
+        message: "Input up to three characters.", 
     },
     {
-        type: "input",
+        type: "list",
         name: "color",
         message: "Input name of color or a hexadecimal number.",
-        choices:["red, blue, green"]
+        choices:["red", "blue", "green"]
     },
     {
-        type: "input",
+        type: "list",
         name: "shape",
         message: "Input shape.",
-        choices: ["circle, triangle, square"]
+        choices: ["circle", "triangle", "square"]
     },
     {
-        type: "input",
-        name: "shape color",
+        type: "list",
+        name: "shapecolor",
         message: "Input shape color or a hexadecimal number.",
-        choices:["red, blue, green"]
+        choices:["red", "blue", "green"]
     },
-]
+];
 
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) =>
@@ -49,26 +41,37 @@ function init() {
     inquirer.prompt(questions)
     .then((awnsers) => {
         console.log(awnsers)
-        const template = generateMarkdown(awnsers)
+        let logo;
+        if (awnsers.shape === "circle"){
+            logo = new Circle()
+        }
+        else if (awnsers.shape === "triangle"){
+            logo = new Triangle()}
+        
+        else {logo = new Square()}
+            
+        
+        logo.settext(awnsers.character)
+        logo.setshapecolor(awnsers.shapecolor)
+        logo.settextcolor(awnsers.color)
+
+        const template = logo.render()
         console.log(template)
         writeToFile("./product/logo.svg", template )
     })
-}
+};
 
+init()
+// .then Text
+// .then text color 
+// .then color keyword
 
-.then Text
-.then text color 
-.then color keyword
+// .then shape 
+// .then shapescolor 
+// .then color keyword
 
-.then shape 
-.then shapescolor 
-.then color keyword
-
-.then svg created named `logo.svg`
-.then console.log("Generated logo.svg") 
-
-
-
+// .then svg created named `logo.svg`
+// .then console.log("Generated logo.svg") 
 
 
 
@@ -78,12 +81,5 @@ function init() {
 
 
 
-function init() {
-    inquirer.prompt(questions)
-    .then((awnsers) => {
-        console.log(awnsers)
-        const template = generateMarkdown(awnsers)
-        console.log(template)
-        writeToFile("./Finished/readme.md", template )
-    })
-}
+
+

@@ -1,10 +1,8 @@
 # Svg Logo Maker
 
   ## Description
+  Svg Logo Maker is an application that creates a logo from user imputs.
 
-  asdf
-
-  
   ## Table of Contents
   * [Description](#description)
   * [Installation](#installation)
@@ -12,25 +10,25 @@
   * [Contribution](#contribution)
   * [Test](#test)
   * [Questions](#questions)
-  MIT
+  
  
-  asdf
+  
   
   ## Installation
 
-  asdf
+  To install Svg Logo Maker click the link.
 
   ## Usage 
 
-  asdf
+  This app is a quick way to make and generate logos.
   
   ## Contribution 
 
-  asdf
+  Martin Farr
 
   ## Test 
 
-  asdf
+  Complete
 
   ## Questions
   *GitHub Profile link
@@ -42,6 +40,6 @@
   TY'asdf
 
   *Email Address
-  asdf
+  martinfarrinspace@google.com
   
 
